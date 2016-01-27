@@ -1,2 +1,7 @@
-# gis-for-journalists
-Handouts and instructions for the GIS for Journalists class at News Hack AZ.
+# GIS for Journalists
+
+This class will teach basic skills needed to analyze data using GIS (Geographic Information Systems). Handouts, tutorials and presentations can be found in this repository.
+
+###Table of Contents
+
+1. [Installing QGIS](https://github.com/newshackaz/gis-for-journalists/blob/master/installing_qgis.md)
