@@ -5,4 +5,4 @@ This class will teach basic skills needed to analyze data using GIS (Geographic 
 ###Table of Contents
 
 1. [Installing QGIS](https://github.com/newshackaz/gis-for-journalists/blob/master/handouts/installing_qgis.md)
-2. [Introduction to mapping concepts](https://github.com/newshackaz/gis-for-journalists/blob/master/handouts/handouts/Mapping-for-Journalists.pdf) (PDF)
+2. [Introduction to mapping concepts](https://github.com/newshackaz/gis-for-journalists/blob/master/handouts/Mapping-for-Journalists.pdf) (PDF)
