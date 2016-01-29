@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Mapping for Journalists</title>
+
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			#projection-menu {
+			  position: absolute;
+			  right: 10px;
+			  top: 10px;
+			}
+
+			.stroke {
+			  fill: none;
+			  stroke: #000;
+			  stroke-width: 3px;
+			}
+
+			.fill {
+			  fill: #fff;
+			}
+
+			.graticule {
+			  fill: none;
+			  stroke: #777;
+			  stroke-width: .5px;
+			  stroke-opacity: .5;
+			}
+
+			.land {
+			  fill: #222;
+			}
+
+			.boundary {
+			  fill: none;
+			  stroke: #fff;
+			  stroke-width: .5px;
+			}
+
+		</style>
+		<script src='./js/jquery-1.12.0.min.js'></script>
+		<script src="./js/d3.v3.min.js"></script>
+		<script src="./js/d3.geo.projection.v0.min.js"></script>
+		<script src="./js/topojson.v1.min.js"></script>
+		<script src="./js/projections.js"></script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Working with QGIS</h1>
+					<h4>Eric Sagara</h4>
+					<small>Reveal / Center for Investigative Reporting</small><br/>
+					<small><a href='mailto:esagara@cironline.org'>esagara@cironline.org</a> | <a href="http://twitter.com/esagara">@esagara</a></small>
+				</section>
+				<section>
+					<section>
+						<h2>A quick tour of qgis</h2>
+					</section>
+					<section>
+						<h3>A blank map</h3>
+						<img src='./images/qgis_blank.png' style='height:500px'/>
+					</section>
+					<section>
+						<h3>The map pane</h3>
+						<small>This is where your map will be displayed</small>
+						<img src='./images/qgis_map_pane.png' style='height:500px'/>
+					</section>
+					<section>
+						<h3>Map information</h3>
+						<small>Projection and scale along with other info</small>
+						<img src='./images/qgis_info.png' style='height:500px'/>
+					</section>
+					<section>
+						<h3>The browser pane</h3>
+						<small>Here you can navigate to your data</small>
+						<img src='./images/qgis_browser.png' style='height:500px'/>
+					</section>
+					<section>
+						<h3>The layers pane</h3>
+						<small>Here is where QGIS displays what layers you have on your map</small>
+						<img src='./images/qgis_layers.png' style='height:500px'/>
+					</section>
+					<section>
+						<h3>The add layers toolbar</h3>
+						<small>Here is where you add new layers</small>
+						<img src='./images/qgis_add_layers.png' style='height:500px'/>
+					</section>
+					<section>
+						<h3>Other tools</h3>
+						<small>Select, pan and zoom, among others</small>
+						<img src='./images/qgis_toolbar.png' style='height:500px'/>
+					</section>										
+				</section>
+				<section>
+					<section>
+						<h2>Building a map</h2>
+					</section>
+					<section>
+						<h3>Adding a layer</h3>
+						<div id='fragments' style='text-align:left'>
+							<div class='fragment'>
+								1. Click on the <img src='./images/vector_layer.png' style='display:inline; border:none; vertical-align:middle'/> button to add a shapefile
+							</div>
+							<div class='fragment'>
+								2. This pops up a dialog<br/>
+								<img src='./images/layer_dialog.png'/>
+							</div>
+							<div class='fragment'>
+								3. Click browse and navigate to the tucson_census.shp file<br/>
+							</div>
+							<div class='fragment'>
+								3. Click open twice to add the shapefile as a layer to the map<br/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>And we have a map</h3>
+						<img src='./images/census_base.png' style='height:500px'/>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Exploring what we have so far</h3>
+						<p>
+							This layer is basically a feature collection. Each individual polygon within it is known as a feature. Let's explore a feature.
+						</p>
+						<div id='fragments' style='text-align:left'>
+							<div class='fragment'>
+								1. Click on the <img src='./images/zoom_in.png' style='display:inline; border:none; vertical-align:middle'/> icon in the top toolbar. Then click in the map to zoom in to an area.
+							</div>
+							<div class='fragment'>
+								2. Click on the <img src='./images/identify_features.png' style='display:inline; border:none; vertical-align:middle'/> in the top toolbar to bring up the Identify Features Tool. Click on a feature within the map.
+							</div>
+						</div>
+					</section>
+					<section>
+						This brings up a new box below the Layers pane containing information about the feature you clicked on. The clicked feature will also be highlighted.
+						<img src='./images/census_feature.png' style='height:500px'/>
+					</section>
+					<section>
+						We can also bring up information about all features by accessing the data behind the shapefile.
+					</section>
+					<section>
+						Right click on the layer and select Open Attribute Table to bring up the data.
+						<img src='./images/census_open_table.png' style='height:500px'/>
+					</section>
+					<section>
+						This opens a new window displaying the data in a spreadsheet format. The data can be selected, searched, sorted and filtered here. You can also perform calculations and add new columns here.
+						<img src='./images/census_attributes.png' style='height:500px'/>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Styling the layer</h2>
+					</section>
+					<section>
+						<p>
+							In the layers pane, right click on the tucson_census layer and select "Properties" to bring up information about the layer.
+						</p>
+						<img src='./images/census_properties.png' style='height:500px'/>
+					</section>
+					<section>
+						<p>
+							Clicking on the General tab brings up information about the layer, including its Coordinate Reference System (more about that later).
+						</p>
+						<img src='./images/census_general.png' style='height:500px'/>
+					</section>
+					<section>
+						<p>
+							The Metadata tab contains more detailed information about the dataset, including some more geographic information.
+						</p>
+						<img src='./images/census_metadata.png' style='height:500px'/>
+					</section>
+					<section>
+						<p>
+							The labels tab allows us to set how the individual features in the layer are labeled. We often handle labeling outside of QGIS, so we are going to skip this.
+						</p>
+						<img src='./images/census_labels.png' style='height:500px'/>
+					</section>
+					<section>
+						<p>
+							The style tab allows us to color and set borders on the features within the layer.
+						</p>
+						<img src='./images/census_style.png' style='height:500px'/>
+					</section>
+					<section>
+						<p>
+							Clicking the Simple Fill button brings up a dialog box allowing us to set the color and border of the features.
+						</p>
+						<img src='./images/census_simple_fill.png' style='height:500px'/>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Joining data to the layer</h2>
+					</section>
+					<section>
+						<h3>Adding a CSV file</h3>
+						<div id='fragments' >
+							<div class='fragment'>
+								1. Start by clicking on the <img src='./images/add_csv.png' style='display:inline; border:none; vertical-align:middle'/> in the toolbar to the left of your screen.
+							</div>
+							<div class='fragment'>
+								2. This brings up a dialog box. Click Browse, navigate to the household_median_income.csv and open it. Make sure the No Geometry option is clicked before hitting OK.
+								<img src='./images/csv_dialog.png' style='height:300px; margin-left:auto; margin-right:auto'/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>An important note:</h3>
+						<p>
+							QGIS automatically interpets all numbers as integers when it imports a CSV file. This can be problematic when you have a number with a leading zero that you need to preserve because integers strip those out.
+						</p>
+					</section>
+					<section>
+						<h3>The solution</h3>
+						<p>
+							The solution is to create a separate file similar to a CSV but with only one row. This file is saved as a .csvt file with the same name as your CSV file. In this case it would be household_median_income.csvt.
+						</p>
+						<p>
+							The single row contains a comma-separated list of the data types (encapsulated in quotes) for each column.
+						</p>
+						<img src='./images/csvt.png'/>
+					</section>
+					<section>
+						By now the file should appear in your layers as a new item.
+						<img src='./images/csv_added.png'/>
+					</section>
+					<section>
+						<h3>Joining the two layers</h3>
+						<div id='fragments' style='text-align:left'>
+							<div class='fragment'>
+								1. Open up the properties for the tucson_census layer.
+							</div>
+							<div class='fragment'>
+								2. Click the <img src='./images/add_join.png' style='display:inline; border:none; vertical-align:middle'/> button at the bottom.
+							</div>
+							<div class='fragment'>
+								3. In the dialog box make sure the Join Layer is household_median_income. Set the Join Field to "Id2" and the Target Field to "GEOID."
+							</div>
+							<div class='fragment'>
+								4. Click on "Choose which fields are joined" and select the last four options.
+							</div>
+							<div class='fragment'>
+								5. Click on "Custom field prefix" and change it to HHMI.
+							</div>
+							<div class='fragment'>
+								6. Click OK to close the dialog and then OK to close the layer properties.
+							</div>
+						</div>
+					</section>
+					<section>
+						The dialog box filled out:<br/>
+						<img src='./images/join_dialog.png' style='height:500px'/>
+					</section>
+					<section>
+						You should now have four new columns at the end of the tucson_census attribute table.
+						<img src='./images/joined.png'/>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Coloring our new map</h2>
+					</section>
+					<section style='text-align:left'>
+						1. To begin open up the properties for tucson_census.
+						<div id='fragments'>
+							<div class='fragment'>
+								2. Change <img src='./images/single_symbol.png' style='display:inline; border:none; vertical-align:middle'/> to <img src='./images/graduated.png' style='display:inline; border:none; vertical-align:middle'/>.
+							</div>
+							<div class='fragment'>
+								3. Select the next to last option under "Column."
+							</div>
+							<div class='fragment'>
+								4. Select a color ramp of your choice.
+							</div>
+							<div class='fragment'>
+								5. Hit the <img src='./images/classify.png' style='display:inline; border:none; vertical-align:middle'/> button.
+							</div>
+						</div>
+					</section>
+					<section>
+						This is what your dialog should look like.
+						<img src='./images/graduated_dialog.png' style='height:500px'/>
+					</section>
+					<section>
+						<h3>A few quick notes</h3>
+						<p>
+							You can change the number of categories you want to display by changing "Classes" to the prefered number. However large amounts of classes tend to dilute the analysis while smaller amounts obscure results.
+						</p>
+						<p>
+							You can also change how QGIS calculates where to split up the categories under the "Mode" option. There is a lot of math behind some of these choices and they have specific use cases. Research these options before using them.
+						</p>
+					</section>
+					<section>
+						<h3>The finished map</h3>
+						<img src='./images/income_mapped.png' style='height:500px'/>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Saving your work</h2>
+						<p>
+							Aside from saving the entire project, you can also export your tucson_census to a new file containing the joined data.
+						</p>
+					</section>
+					<section>
+						<h3>To save to shapefile</h3>
+						<div id='fragments'  style='text-align:left'>
+							<div class='fragment'>
+								1. Right click on tucson_census in the Layers panel and select "Save As..."
+							</div>
+							<div class='fragment'>
+								2. Make sure 'ESRI Shapefile' is selected at the top.
+							</div>
+							<div class='fragment'>
+								3. On the next line, click Browse to navigate to the folder where you want to save your data. Name your file and click "Save."
+							</div>
+							<div class='fragment'>
+								4. Change your projection if needed.
+							</div>
+							<div class='fragment'>
+								5. Click OK. A layer with the new shapefile should be added to your map.
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Saving to KML</h3>
+						<p>Save your map to this format if you plan to use it online with Google Fusion Tables, Google Earth or most other online programs.
+						</p>
+					</section>
+					<section  style='text-align:left'>
+						1. Right click on tucson_census in the Layers panel and select "Save As..."
+						<div id='fragments'>
+							<div class="fragment">
+								2. Make sure "Keyhole Markup Language [KML]" is selected at the top.
+							</div>
+							<div class="fragment">
+								3. On the next line, click Browse to navigate to the folder where you want to save your data. Name your file and click "Save."
+							</div>
+						</div>
+					</section>
+					<section  style='text-align:left'>
+						4. On the line labeled CRS click the <img src='./images/crs.png' style='display:inline; border:none; vertical-align:middle'/> icon.
+						<div id='fragments'>
+							<div class='fragment'>
+								5. Select or search for the option that says 'EPSG:4326.' This is the projection used by all KML files.
+							</div>
+							<div class='fragment'>
+								6. Under Datasource Options change DescriptionField to 'HHMIMedian Income' and NameField to "NAMELSAD."
+							</div>
+							<div class='fragment'>
+								7. Hit OK and your new KML file should be added to the map.
+							</div>
+						</div>
+					</section>
+				</section>
+				<section>
+					<h1>Congratulations!</h1>
+					<h3>You've created your first map</h3>
+					<p>
+						This presentation and other handouts can be found online at <a href="https://github.com/newshackaz/gis-for-journalists">https://github.com/newshackaz/gis-for-journalists</a>
+					</p>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'zoom', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
