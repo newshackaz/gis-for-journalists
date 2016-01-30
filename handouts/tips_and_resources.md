@@ -103,11 +103,6 @@ This versatile javascript library for charting also handles SVG maps as well.
 
 Map projections can be complicated. A basic understanding of how they work is important to creating accurate maps. Below are some resources on map projections.
 
-####XKCD's take on projections
-
-Ok not necessarily helpful, but a great read all the same.
-
-**Website:** [https://xkcd.com/977/](https://xkcd.com/977/)
 
 ####Michael Bostock's map projections transistions
 
@@ -126,3 +121,17 @@ While tailored for working with ArcGIS, this is probably the most comprehensive 
 The National Oceanic and Atmospheric Administration has an online course for working with map projections in ESRI's ArcGIS software. The course is free.
 
 **Website:** [https://coast.noaa.gov/digitalcoast/training/datums](https://coast.noaa.gov/digitalcoast/training/datums)
+
+####XKCD's take on projections
+
+Ok not necessarily helpful, but a great read all the same.
+
+**Website:** [https://xkcd.com/977/](https://xkcd.com/977/)
+
+##Different types of maps
+
+Different stories require different types of maps. The map must match the analysis and convey your point easily and accurately. Below is information on several variations of maps.
+
+####Chloropleth maps
+
+![Chloropleth map](./images/tucson_property_census.png)
