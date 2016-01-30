@@ -134,4 +134,4 @@ Different stories require different types of maps. The map must match the analys
 
 ####Chloropleth maps
 
-![Chloropleth map](./images/tucson_property_census.png)
+![Chloropleth map](https://github.com/newshackaz/gis-for-journalists/blob/master/images/tucson_property_census.png)
