@@ -135,3 +135,13 @@ Different stories require different types of maps. The map must match the analys
 ####Chloropleth maps
 
 ![Chloropleth map](https://github.com/newshackaz/gis-for-journalists/blob/master/images/tucson_property_census.png)
+
+Chloropleth maps are good for displaying data aggregated to a common geography such as state, county, census tract or congressional district. Avoid mapping to zip codes (more on that later). Your data should be normalized in some way when mapping this way - a ratio or percentage.
+
+######Indiemapper
+
+This is a great summary of when and how to use chloropleth maps.
+
+[http://indiemapper.com/app/learnmore.php?l=choropleth](http://indiemapper.com/app/learnmore.php?l=choropleth)
+
+

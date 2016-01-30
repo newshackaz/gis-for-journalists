@@ -271,10 +271,10 @@
 								3. In the dialog box make sure the Join Layer is household_median_income. Set the Join Field to "Id2" and the Target Field to "GEOID."
 							</div>
 							<div class='fragment'>
-								4. Click on "Choose which fields are joined" and select the last four options.
+								4. Click on "Choose which fields are joined" and select everything but the first three options.
 							</div>
 							<div class='fragment'>
-								5. Click on "Custom field prefix" and change it to HHMI.
+								5. Click on "Custom field prefix" and delete the entry there.
 							</div>
 							<div class='fragment'>
 								6. Click OK to close the dialog and then OK to close the layer properties.
@@ -286,7 +286,7 @@
 						<img src='./images/join_dialog.png' style='height:500px'/>
 					</section>
 					<section>
-						You should now have four new columns at the end of the tucson_census attribute table.
+						You should now have a ton of new columns at the end of the tucson_census attribute table.
 						<img src='./images/joined.png'/>
 					</section>
 				</section>
@@ -301,7 +301,7 @@
 								2. Change <img src='./images/single_symbol.png' style='display:inline; border:none; vertical-align:middle'/> to <img src='./images/graduated.png' style='display:inline; border:none; vertical-align:middle'/>.
 							</div>
 							<div class='fragment'>
-								3. Select the next to last option under "Column."
+								3. Select "Percent Change" under "Column."
 							</div>
 							<div class='fragment'>
 								4. Select a color ramp of your choice.
@@ -379,7 +379,7 @@
 								5. Select or search for the option that says "EPSG:4326." This is the projection used by all KML files.
 							</div>
 							<div class='fragment'>
-								6. Under Datasource Options change DescriptionField to 'HHMIMedian Income' and NameField to "NAMELSAD."
+								6. Under Datasource Options change DescriptionField to "Percent Change" and NameField to "NAMELSAD."
 							</div>
 							<div class='fragment'>
 								7. Hit OK and your new KML file should be added to the map.
