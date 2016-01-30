@@ -1,8 +1,9 @@
 #Additional resources and tips
 
-**Table of Contents
+**Table of Contents**
 - [Where to get software](#where-to-get-software)
 - [Displaying maps online](#displaying-maps-online)
+- [Understanding map projections](#understanding-map-projections)
 
 ##Where to get software
 
@@ -91,3 +92,31 @@ Leaflet is a javascript library for displaying tiled maps online. It requires a 
 This versatile javascript library for charting also handles SVG maps as well.
 
 **Website:** [http://d3js.org/](http://d3js.org/)
+
+##Understanding map projections
+
+Map projections can be complicated. A basic understanding of how they work is important to creating accurate maps. Below are some resources on map projections.
+
+###XKCD's take on projections
+
+Ok not necessarily helpful, but a great read all the same.
+
+**Website:** [https://xkcd.com/977/](https://xkcd.com/977/)
+
+###Michael Bostock's map projections transistions
+
+Actually a tutorial for working with Bostock's D3.js library, this animation shows how projections differ. For some reason Mercator is missing from the projections here.
+
+**Website:** [http://bl.ocks.org/mbostock/3711652](http://bl.ocks.org/mbostock/3711652)
+
+###ESRI's documentation on projections and geographic coordinate systems
+
+While tailored for working with ArcGIS, this is probably the most comprehensive resource for understanding projections and geographic coordinate systems.
+
+**Website:** [http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/What_are_map_projections/003r00000001000000/](http://help.arcgis.com/en/arcgisdesktop/10.0/help/index.html#/What_are_map_projections/003r00000001000000/)
+
+###NOAA's online course
+
+The National Oceanic and Atmospheric Administration has an online course for working with map projections in ESRI's ArcGIS software. The course is free.
+
+**Website:** [https://coast.noaa.gov/digitalcoast/training/datums](https://coast.noaa.gov/digitalcoast/training/datums)
