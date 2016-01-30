@@ -5,6 +5,12 @@
 - [Displaying maps online](#displaying-maps-online)
 - [Understanding map projections](#understanding-map-projections)
 
+**ToDo**
+- Different types of maps
+- Coloring your map
+- Why zip codes suck
+- Where to get more help
+
 ##Where to get software
 
 There are many different software packages available for working with GIS data. Below is a list of several packages.
